@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="main"></div>
+  <script src="json-display.js"></script>
+  <script>
+    var exampleJson = {
+      object: { nested: { deep: { a: 1, b: 'string' } } },
+      number: 1253,
+      string: 'Hello there.',
+      array: [ 1, 2, 3, 4 ],
+      bool: true,
+      objectArray: [ { a: 234, b: true }, { f: 'test' }, { h: { a: 12 } } ],
+      null: null,
+      undefined: undefined,
+      float: 23.674,
+      today: new Date(),
+      dateString: (new Date()).toISOString()
+    };
+    var openLevels = 2;
+    document.getElementById('main').appendChild(
+      JSONDisplay(exampleJson, openLevels)
+    );
+  </script>
+</body>
+</html>
