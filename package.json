@@ -4,7 +4,7 @@
   "description": "Accepts JSON and returns a structure of HTML elements displaying the JSON",
   "main": "JSONDisplay.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "author": "Lucy Gilbert",
   "license": "MIT",
