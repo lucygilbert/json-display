@@ -38,13 +38,15 @@ describe('Type handling', function() {
   it('correctly displays objects', function () {
     var result = JSONDisplay({});
 
-    expect(result.firstChild.childNodes[1].innerHTML).to.equal('Object');
+    expect(result.querySelectorAll('[data-test="titleContainer"]')[0]
+                 .firstChild.childNodes[1].innerHTML).to.equal('Object');
   });
 
   it('correctly displays arrays', function () {
     var result = JSONDisplay([]);
 
-    expect(result.firstChild.childNodes[1].innerHTML).to.equal('Array[0]');
+    expect(result.querySelectorAll('[data-test="titleContainer"]')[0]
+                 .firstChild.childNodes[1].innerHTML).to.equal('Array[0]');
   });
 
   it('correctly displays dates', function () {
@@ -113,9 +115,11 @@ describe('Type handling', function() {
         object: {},
       });
 
-      expect(result.childNodes[1].firstChild.childNodes[1].firstChild.innerHTML).to.equal(
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].firstChild.innerHTML).to.equal(
         'object: ');
-      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.contain('>Object');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].innerHTML).to.contain('>Object');
     });
 
     it('correctly displays arrays', function () {
@@ -123,9 +127,11 @@ describe('Type handling', function() {
         array: [ 1, 2 ],
       });
 
-      expect(result.childNodes[1].firstChild.childNodes[1].firstChild.innerHTML).to.equal(
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].firstChild.innerHTML).to.equal(
         'array: ');
-      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.contain('>Array[2]');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].innerHTML).to.contain('>Array[2]');
     });
 
     it('correctly displays dates', function () {
@@ -199,8 +205,11 @@ describe('Type handling', function() {
         { a: 12 },
       ]);
 
-      expect(result.childNodes[1].firstChild.childNodes[1].firstChild.innerHTML).to.equal('0: ');
-      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.contain('>Object');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].firstChild.innerHTML).to.equal(
+        '0: ');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].innerHTML).to.contain('>Object');
     });
 
     it('correctly displays arrays', function () {
@@ -208,8 +217,11 @@ describe('Type handling', function() {
         [ 1, 2, 3, 4 ],
       ]);
 
-      expect(result.childNodes[1].firstChild.childNodes[1].firstChild.innerHTML).to.equal('0: ');
-      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.contain('>Array[4]');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].firstChild.innerHTML).to.equal(
+        '0: ');
+      expect(result.querySelectorAll('[data-test="titleContainer"]')[1]
+                   .firstChild.childNodes[1].innerHTML).to.contain('>Array[4]');
     });
 
     it('correctly displays dates', function () {

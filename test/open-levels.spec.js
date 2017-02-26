@@ -8,7 +8,8 @@ describe('Open levels setting', function() {
     it('should close all levels', function () {
       var result = JSONDisplay(testJson, -4);
 
-      var divDisplayStatuses = result.querySelectorAll('div').map(function (div) {
+      var divDisplayStatuses = result.querySelectorAll('[data-test="contentsContainer"]')
+        .map(function (div) {
         return div.style.display !== 'none';
       });
 
@@ -20,7 +21,8 @@ describe('Open levels setting', function() {
     it('should close all levels', function () {
       var result = JSONDisplay(testJson, 0);
 
-      var divDisplayStatuses = result.querySelectorAll('div').map(function (div) {
+      var divDisplayStatuses = result.querySelectorAll('[data-test="contentsContainer"]')
+        .map(function (div) {
         return div.style.display !== 'none';
       });
 
@@ -32,7 +34,8 @@ describe('Open levels setting', function() {
     it('should close levels after the level number provided', function () {
       var result = JSONDisplay(testJson, 3);
 
-      var divDisplayStatuses = result.querySelectorAll('div').map(function (div) {
+      var divDisplayStatuses = result.querySelectorAll('[data-test="contentsContainer"]')
+        .map(function (div) {
         return div.style.display !== 'none';
       });
 

@@ -1,6 +1,6 @@
 {
   "name": "json-display",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Accepts JSON and returns a structure of HTML elements displaying the JSON",
   "main": "json-display.js",
   "scripts": {

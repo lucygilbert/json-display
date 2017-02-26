@@ -29,19 +29,20 @@
 }(this, function() {
   return function JSONDisplay(json, openLevelsArg, styleOptionsArg) {
     var DEFAULT_STYLE_OPTIONS = {
-      root: { tag: 'pre', style: '' },
-      title: { tag: 'span', style: 'display: block;' },
+      root: { tag: 'pre', style: 'padding: 5px; font-size: 1rem;' },
+      titleContainer: { tag: 'div', style: 'margin-bottom: 3px;' },
+      title: { tag: 'span', style: 'cursor: pointer;' },
       titleText: { tag: 'span', style: '' },
       openButton: { 
         tag: 'span',
         style: 'display: inline-block; border-top: 5px solid transparent; ' +
                'border-bottom: 5px solid transparent; border-left: 5px solid black; ' +
-               'margin-right: 2px;',
+               'margin-right: 7px;',
       },
-      contentsContainer: { tag: 'div', style: 'padding-left: 10px;' },
-      keyValuePair: { tag: 'span', style: 'display: block;' },
+      contentsContainer: { tag: 'div', style: 'padding-left: 12px;' },
+      keyValuePair: { tag: 'span', style: 'display: block; margin-bottom: 2px;' },
       key: { tag: 'span', style: 'color: darkblue;' },
-      stringValue: { tag: 'span', style: 'color: darkred;' },
+      stringValue: { tag: 'span', style: 'color: crimson;' },
       numberValue: { tag: 'span', style: 'color: blue;' },
       booleanValue: { tag: 'span', style: 'color: blue;' },
       nullValue: { tag: 'span', style: 'color: blue;' },
@@ -100,6 +101,9 @@
 
     function getTitle(titleText, optionalKey, levelIsClosed) {
       var currentlyClosed = levelIsClosed;
+      var containerElement = document.createElement(styleOptions.titleContainer.tag);
+      containerElement.style.cssText = styleOptions.titleContainer.style;
+      containerElement.setAttribute('data-test', 'titleContainer');
       var textElement = document.createElement(styleOptions.titleText.tag);
       var titleElement = document.createElement(styleOptions.title.tag);
       titleElement.style.cssText = styleOptions.title.style;
@@ -114,13 +118,14 @@
 
       titleElement.onclick = function () {
         var openButton = titleElement.firstChild;
-        var objectContents = titleElement.nextSibling;
+        var objectContents = titleElement.parentNode.nextSibling;
         objectContents.style.display = currentlyClosed ? 'block' : 'none';
         openButton.style.transform = currentlyClosed ? 'rotate(90deg)' : 'rotate(0deg)';
         currentlyClosed = !currentlyClosed;
       }
 
-      return titleElement;
+      containerElement.appendChild(titleElement);
+      return containerElement;
     }
 
     function getOpenButton(levelIsClosed) {
@@ -132,6 +137,7 @@
 
     function getContentsContainer(isClosed) {
       var containerElement = document.createElement(styleOptions.contentsContainer.tag);
+      containerElement.setAttribute('data-test', 'contentsContainer');
       containerElement.style.cssText = styleOptions.contentsContainer.style;
       containerElement.style.display = (isClosed ? 'none' : 'block');
       return containerElement;
