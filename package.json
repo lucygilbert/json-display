@@ -1,0 +1,21 @@
+{
+  "name": "json-display",
+  "version": "1.0.0",
+  "description": "Accepts JSON and returns a structure of HTML elements displaying the JSON",
+  "main": "JSONDisplay.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Lucy Gilbert",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "karma": "^1.5.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "mocha": "^3.2.0"
+  }
+}
