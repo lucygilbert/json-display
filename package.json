@@ -2,9 +2,21 @@
   "name": "json-display",
   "version": "1.0.0",
   "description": "Accepts JSON and returns a structure of HTML elements displaying the JSON",
-  "main": "JSONDisplay.js",
+  "main": "json-display.js",
   "scripts": {
     "test": "karma start"
+  },
+  "keywords": [
+    "json",
+    "html",
+    "formatter"
+  ],
+  "bugs": {
+    "url": "https://github.com/lucygilbert/json-display/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lucygilbert/json-display.git"
   },
   "author": "Lucy Gilbert",
   "license": "MIT",
