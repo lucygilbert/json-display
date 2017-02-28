@@ -14,9 +14,19 @@
       null: null,
       undefined: undefined,
       float: 23.674,
+      pi: Math.PI,
+      cos: Math.cos(47.5),
+      nan: NaN,
+      computedNan: parseInt('nan'),
+      infinity: Infinity,
+      negInfinity: -Infinity,
       today: new Date(),
       dateString: (new Date()).toISOString()
     };
+    if (Symbol) {
+      exampleJson[Symbol('foo')] = 123;
+      exampleJson.symbol = Symbol('bar');
+    }
     var openLevels = 2;
     document.getElementById('main').appendChild(
       JSONDisplay(exampleJson, openLevels)

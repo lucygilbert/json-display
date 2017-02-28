@@ -55,6 +55,12 @@ describe('Type handling', function() {
     expect(result.firstChild.innerHTML).to.equal('"2017-01-01T12:00:00.000Z"');
   });
 
+  it('correctly displays symbols', function () {
+    var result = JSONDisplay(Symbol('foo'));
+
+    expect(result.firstChild.innerHTML).to.equal('Symbol(foo)');
+  });
+
   describe('within an object', function() {
     it('correctly displays integers', function () {
       var result = JSONDisplay({
@@ -142,6 +148,15 @@ describe('Type handling', function() {
       expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('date: ');
       expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal(
         '"2017-01-01T12:00:00.000Z"');
+    });
+
+    it('correctly displays symbols', function () {
+      var result = JSONDisplay({
+        symbol: Symbol('foo'),
+      });
+
+      expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('symbol: ');
+      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal('Symbol(foo)');
     });
   });
 
@@ -232,6 +247,15 @@ describe('Type handling', function() {
       expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('0: ');
       expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal(
         '"2017-01-01T12:00:00.000Z"');
+    });
+
+    it('correctly displays symbols', function () {
+      var result = JSONDisplay([
+        Symbol('foo'),
+      ]);
+
+      expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('0: ');
+      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal('Symbol(foo)');
     });
   });
 });

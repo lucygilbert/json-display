@@ -6,11 +6,10 @@ describe('Style overrides', function() {
     titleText: { tag: 'span', style: '' },
     openButton: { 
       tag: 'span',
-      style: 'display: inline-block; border-top: 5px solid transparent; ' +
-             'border-bottom: 5px solid transparent; border-left: 5px solid black; ' +
-             'margin-right: 7px;',
+      style: 'display: inline-block; margin: 0px 7px 0px 2px; border-top: 5px solid transparent; ' +
+             'border-bottom: 5px solid transparent; border-left: 5px solid black;',
     },
-    contentsContainer: { tag: 'div', style: 'padding-left: 12px;' },
+    contentsContainer: { tag: 'div', style: 'padding-left: 18px;' },
     keyValuePair: { tag: 'span', style: 'display: block; margin-bottom: 2px;' },
     key: { tag: 'span', style: 'color: darkblue;' },
     stringValue: { tag: 'span', style: 'color: crimson;' },
