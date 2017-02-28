@@ -35,13 +35,13 @@
       titleText: { tag: 'span', style: '' },
       openButton: { 
         tag: 'span',
-        style: 'display: inline-block; border-top: 5px solid transparent; ' +
-               'border-bottom: 5px solid transparent; border-left: 5px solid black; ' +
-               'margin-right: 7px;',
+        style: 'display: inline-block; margin: 0px 7px 0px 2px; border-top: 5px solid transparent; '
+             + 'border-bottom: 5px solid transparent; border-left: 5px solid black;',
       },
-      contentsContainer: { tag: 'div', style: 'padding-left: 12px;' },
+      contentsContainer: { tag: 'div', style: 'padding-left: 18px;' },
       keyValuePair: { tag: 'span', style: 'display: block; margin-bottom: 2px;' },
       key: { tag: 'span', style: 'color: darkblue;' },
+      symbolValue: { tag: 'span', style: 'color: darkgreen;' },
       stringValue: { tag: 'span', style: 'color: crimson;' },
       numberValue: { tag: 'span', style: 'color: blue;' },
       booleanValue: { tag: 'span', style: 'color: blue;' },
@@ -94,6 +94,11 @@
         } else {
           container.appendChild(getStandardPair(key, json[key]));
         }
+      }
+      if (typeof Object.getOwnPropertySymbols === 'function') {
+        Object.getOwnPropertySymbols(json).forEach(symbol => {
+          container.appendChild(getStandardPair(symbol.toString(), json[symbol]));
+        });
       }
 
       return container;
@@ -162,6 +167,11 @@
       var valueElement;
       var nullType = 'object';
       switch (typeof value) {
+        case 'symbol':
+          valueElement = document.createElement(styleOptions.symbolValue.tag);
+          valueElement.style.cssText = styleOptions.symbolValue.style;
+          valueElement.appendChild(document.createTextNode(value.toString()));
+          break;
         case 'string':
           valueElement = document.createElement(styleOptions.stringValue.tag);
           valueElement.style.cssText = styleOptions.stringValue.style;
