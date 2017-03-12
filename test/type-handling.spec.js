@@ -158,6 +158,27 @@ describe('Type handling', function() {
       expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('symbol: ');
       expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal('Symbol(foo)');
     });
+
+    it('correctly displays symbol properties', function () {
+      var json = {};
+      json[Symbol('foo')] = 539;
+      var result = JSONDisplay(json);
+
+      expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('Symbol(foo): ');
+      expect(result.childNodes[1].firstChild.childNodes[1].innerHTML).to.equal('539');
+    });
+
+    it('skips the check for symbol properties in browsers that don\'t support it', function () {
+      var originalSymbolFunction = Object.getOwnPropertySymbols;
+      Object.getOwnPropertySymbols = null;
+      var json = {};
+      json[Symbol('foo')] = 539;
+      var result = JSONDisplay(json);
+
+      expect(result.querySelector('[data-test="contentsContainer"]').childNodes.length).to.equal(0);
+
+      Object.getOwnPropertySymbols = originalSymbolFunction;
+    });
   });
 
   describe('within an array', function() {
