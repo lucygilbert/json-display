@@ -1,13 +1,13 @@
 module.exports = function(config) {
-  config.set({
+  var configuration = {
     basePath: '',
     frameworks: ['mocha', 'chai'],
     files: [
       'test/*.spec.js',
-      'json-display.js'
+      'json-display.js',
     ],
     preprocessors: {
-      'json-display.js': ['coverage']
+      'json-display.js': ['coverage'],
     },
     reporters: ['mocha', 'coverage'],
     coverageReporter: {
@@ -16,9 +16,9 @@ module.exports = function(config) {
           statements: 95,
           branches: 90,
           functions: 100,
-          lines: 95
-        }
-      }
+          lines: 95,
+        },
+      },
     },
     port: 9876,
     colors: true,
@@ -26,6 +26,18 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: true,
-    concurrency: Infinity
-  })
+    concurrency: Infinity,
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox'],
+      },
+    },
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configuration);
 }
