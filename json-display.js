@@ -46,7 +46,6 @@
       numberValue: { tag: 'span', style: 'color: blue;' },
       booleanValue: { tag: 'span', style: 'color: blue;' },
       nullValue: { tag: 'span', style: 'color: blue;' },
-      defaultValue: { tag: 'span', style: 'color: blue;' },
     };
     var openLevels = isNaN(parseInt(openLevelsArg)) ? Infinity : parseInt(openLevelsArg);
     var styleOptions = typeof styleOptionsArg === 'object' 
@@ -192,10 +191,6 @@
           valueElement.style.cssText = styleOptions.nullValue.style;
           valueElement.appendChild(document.createTextNode(value));
           break;
-        default:
-          valueElement = document.createElement(styleOptions.defaultValue.tag);
-          valueElement.style.cssText = styleOptions.defaultValue.style;
-          valueElement.appendChild(document.createTextNode(value));
       }
       return valueElement;
     }
