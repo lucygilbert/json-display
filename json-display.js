@@ -95,7 +95,7 @@
         }
       }
       if (typeof Object.getOwnPropertySymbols === 'function') {
-        Object.getOwnPropertySymbols(json).forEach(symbol => {
+        Object.getOwnPropertySymbols(json).forEach(function(symbol) {
           container.appendChild(getStandardPair(symbol.toString(), json[symbol]));
         });
       }
