@@ -1,10 +1,10 @@
-#JSONDisplay
+# JSONDisplay
 
-##Installation
+## Installation
 
 To install the package, use the command `npm install json-display`.
 
-##Usage
+## Usage
 
 The function can either be imported with CommonJS, AMD or will be added to the window as `JSONDisplay`.
 
@@ -46,7 +46,7 @@ The default options are:
 
 The return value is a HTMLElement structure
 
-##Contributing
+## Contributing
 
 The tests can be run with `npm test`. They will also provide you with information about the currently level of code coverage, in the coverage directory.
 
