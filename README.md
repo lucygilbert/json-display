@@ -8,7 +8,7 @@ To install the package, use the command `npm install json-display`.
 
 The function can either be imported with CommonJS, AMD or will be added to the window as `JSONDisplay`.
 
-`JSONDisplay(json, openLevels, styleOptions)`
+`JSONDisplay(json, openLevels, styleOptions, formatters)`
 
 **Arguments**
 
@@ -16,7 +16,9 @@ The function can either be imported with CommonJS, AMD or will be added to the w
 
 `openLevels`: *(optional)* This is the amount of levels of the JSON structure that will be automatically opened when first rendering the object. 0 or less will cause the entire structure to begin closed. Null, anything not parsable as an integer, or simply not providing an argument will cause every level to begin open.
 
-`styleOptions`: *(optional)* This is an object that provides overrides for the tags and styles used for the HTML structure, it will be deep merged into the default options so you do not have to provide all the options. See the source code to understand the structure you are adding the styles and tags into. 
+`styleOptions`: *(optional)* This is an object that provides overrides for the tags and styles used for the HTML structure, it will be deep merged into the default options so you do not have to provide all the options. See the source code to understand the structure you are adding the styles and tags into.
+
+`formatters`: *(optional)* This parameter provides an override for formatting date objects. 
 
 The default options are:
 
@@ -42,9 +44,17 @@ The default options are:
 }
 ```
 
+The default formatters are:
+
+```
+{
+    date: function(date) { return date.toISOString(); },
+}
+```
+
 **Return value**
 
-The return value is a HTMLElement structure
+The return value is an HTMLElement structure
 
 ## Contributing
 

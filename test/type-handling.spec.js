@@ -50,7 +50,7 @@ describe('Type handling', function() {
   });
 
   it('correctly displays dates', function () {
-    var result = JSONDisplay(new Date(2017, 0, 1, 12));
+    var result = JSONDisplay(new Date(Date.UTC(2017, 0, 1, 12)));
 
     expect(result.firstChild.innerHTML).to.equal('"2017-01-01T12:00:00.000Z"');
   });
@@ -142,7 +142,7 @@ describe('Type handling', function() {
 
     it('correctly displays dates', function () {
       var result = JSONDisplay({
-        date: new Date(2017, 0, 1, 12),
+        date: new Date(Date.UTC(2017, 0, 1, 12)),
       });
 
       expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('date: ');
@@ -262,7 +262,7 @@ describe('Type handling', function() {
 
     it('correctly displays dates', function () {
       var result = JSONDisplay([
-        new Date(2017, 0, 1, 12),
+        new Date(Date.UTC(2017, 0, 1, 12)),
       ]);
 
       expect(result.childNodes[1].firstChild.firstChild.innerHTML).to.equal('0: ');
