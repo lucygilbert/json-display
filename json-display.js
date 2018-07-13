@@ -27,7 +27,7 @@
     root.JSONDisplay = factory();
   }
 }(this, function() {
-  return function JSONDisplay(json, openLevelsArg, styleOptionsArg) {
+  return function JSONDisplay(json, openLevelsArg, styleOptionsArg, formattersArg) {
     var DEFAULT_STYLE_OPTIONS = {
       root: { tag: 'pre', style: 'padding: 5px; font-size: 1rem;' },
       titleContainer: { tag: 'div', style: 'margin-bottom: 3px;' },
@@ -47,10 +47,16 @@
       booleanValue: { tag: 'span', style: 'color: blue;' },
       nullValue: { tag: 'span', style: 'color: blue;' },
     };
+    var DEFAULT_FORMATTERS = {
+        date: function(date) { return date.toISOString(); },
+    };
     var openLevels = isNaN(parseInt(openLevelsArg)) ? Infinity : parseInt(openLevelsArg);
     var styleOptions = typeof styleOptionsArg === 'object' 
                        ? mergeStyleOptions(DEFAULT_STYLE_OPTIONS, styleOptionsArg)
                        : DEFAULT_STYLE_OPTIONS;
+    var formatters = typeof formattersArg === 'object'
+                     ? mergeFormatterOptions(DEFAULT_FORMATTERS, formattersArg)
+                     : DEFAULT_FORMATTERS;
 
     if (typeof Object.assign != 'function') {
       Object.assign = function(target) {
@@ -83,7 +89,7 @@
         var voidElement = getValue(null);
         element.appendChild(voidElement);
       } else if (json instanceof Date) {
-        var dateElement = getValue(json.toISOString());
+        var dateElement = getValue(formatters.date(json));
         element.appendChild(dateElement);
       } else if (typeof json !== 'object') {
         var nonExpandableElement = getValue(json);
@@ -109,7 +115,7 @@
         } else if (json[key] === null || json[key] === undefined) {
           container.appendChild(getStandardPair(key, null));
         } else if (json[key] instanceof Date) {
-          container.appendChild(getStandardPair(key, json[key].toISOString()));
+          container.appendChild(getStandardPair(key, formatters.date(json[key])));
         } else if (typeof json[key] === 'object') {
           container.appendChild(getTitle('Object', key, nextLevelIsClosed));
           container.appendChild(convertJsonToElements(json[key], index + 1));
@@ -222,6 +228,14 @@
       var merged = {};
       for (var key in defaults) {
         merged[key] = Object.assign({}, defaults[key], overrides[key]);
+      }
+      return merged;
+    }
+
+    function mergeFormatterOptions(defaults, overrides) {
+      var merged = {};
+      for (var key in defaults) {
+        merged[key] = overrides[key] || defaults[key];
       }
       return merged;
     }
